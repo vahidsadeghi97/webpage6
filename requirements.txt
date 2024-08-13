@@ -7,3 +7,4 @@ opencv-python==4.7.0
 matplotlib==3.7.1
 pytorch-grad-cam==1.6.0
 werkzeug==2.3.0
+gunicorn==20.1.0
