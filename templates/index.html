@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification</title>
+</head>
+<body>
+    <h1>Upload an Image for Classification</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+
+    {% if filename %}
+    <h2>Uploaded Image:</h2>
+    <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded Image" width="300px">
+    <h3>Prediction: {{ prediction }}</h3>
+
+    <form action="{{ url_for('gradcam', filename=filename) }}" method="get">
+        <input type="submit" value="Generate Grad-CAM++">
+    </form>
+
+    {% if gradcam_img %}
+    <h2>Grad-CAM++ Visualization:</h2>
+    <img src="data:image/png;base64,{{ gradcam_img }}" alt="Grad-CAM++ Visualization">
+    {% endif %}
+    {% endif %}
+</body>
+</html>
